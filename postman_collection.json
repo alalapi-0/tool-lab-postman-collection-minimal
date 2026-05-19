@@ -1,0 +1,64 @@
+{
+  "info": {
+    "name": "tool-lab-postman-collection-minimal",
+    "_postman_id": "f1e2d3c4-b5a6-7089-0123-mini-postman",
+    "description": "tool-mini-labs Stage 4：两套请求模板——① 公有只读 Demo（无需自备服务）；② 可选地配合 tool-lab-express-api-minimal 本地端口。\n导入 Postman Desktop 后即可点 Send。详见仓库 README。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "demoBase",
+      "value": "https://jsonplaceholder.typicode.com",
+      "type": "string"
+    },
+    {
+      "key": "expressBase",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "A. 公有只读 Demo（免本地后端）",
+      "item": [
+        {
+          "name": "GET 单条 Post（posts/1）",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{demoBase}}/posts/1"
+          }
+        },
+        {
+          "name": "GET 用户列表前 5 条（users）",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{demoBase}}/users?_limit=5"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B. 配合 Express 最小 API（需先 npm start Stage3）",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{expressBase}}/health"
+          }
+        },
+        {
+          "name": "GET /hello?name=Ryo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{expressBase}}/hello?name=Ryo"
+          }
+        }
+      ]
+    }
+  ]
+}
