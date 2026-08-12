@@ -2,29 +2,27 @@
 
 ## 本机环境
 
-- 操作系统：macOS 26.3.1（darwin）
-- Postman 版本（About）：_（请在你本机导入后填写）_
-- Node：`v25.6.1`（本仓库 A 章不强制使用）
-- Python：3.14.3（仅用于机器侧 JSON 自检）
-- 是否需要账号：否（本实验公有请求不需要）
+- 运行日期：2026-08-12
+- Postman Desktop：未安装或启动
+- Python：3.14.3（结构与 HTTP 验证）
+- 是否需要账号：否（公有只读请求）
 - 是否需要 API Key：否
 
-## 运行步骤（记录你实际做过的）
+## 运行方式
 
-```
-python3 -c "import json; json.load(open('postman_collection.json'))"
-curl -s "https://jsonplaceholder.typicode.com/posts/1" | head -c 200
-# Postman GUI：导入 postman_collection.json → 跑 A 章；（可选）启 Stage3 Express 后跑 B 章
-```
+使用 Python 标准库解析 collection，并按 A 章模板各发起一次带明确 User-Agent 的只读 GET；未安装 Postman，也未启动或调用本地 Express B 章。
 
 ## 运行结果
 
-（2026-05-19）`postman_collection.json` 可被标准库 `json` 解析；`curl` 成功返回 `posts/1` JSON 片段。**A/B 章在 Postman 内点 Send** 请你在本机 GUI 完成并补记状态码与响应摘要。
+- Collection JSON 可解析，声明 v2.1 schema；
+- 两个变量、两组目录和四个请求完整，四个请求均为无认证头的 GET；
+- `GET /posts/1` 返回 HTTP 200 JSON，id 与字段类型符合模板预期；
+- `GET /users?_limit=5` 返回 HTTP 200 JSON，恰有 id 1～5 五位用户。
 
 ## 报错记录
 
-无（机器侧 JSON + curl 自检）。
+无。Postman GUI 导入/Runner 未验证，因此不声称桌面应用兼容性；本地 B 章已有独立 Express 仓库验证证据。
 
-## 我是否真正理解了这个工具的一句话总结
+## 一句话总结
 
-Postman Collection 把「重复的 HTTP 调用」固化成可变量、可分享的请求树，让调试与协作不再依赖临时记 URL。
+Postman Collection 把变量化 HTTP 请求组织成可分享的请求树；本次机器验证证明模板结构和公有只读端点可用。
